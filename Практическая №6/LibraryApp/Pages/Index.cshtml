@@ -1,0 +1,21 @@
+﻿@page
+@model LibraryApp.Pages.IndexModel
+@{
+    ViewData["Title"] = "Library";
+}
+
+<h1>Фильтр по году</h1>
+<form method="get">
+    <label>Год: <input type="number" name="minYear" value="2020" /></label>
+    <button type="submit">Фильтровать</button>
+</form>
+
+<h2>Книги с @Request.Query["minYear"] и позже</h2>
+<ul>
+    @foreach (var book in Model.RecentBooks)
+    {
+        <li>@book.Title (@book.Year) — @book.Author</li>
+    }
+</ul>
+
+<h3>Всего учебников: @Model.TextbookCount</h3>
